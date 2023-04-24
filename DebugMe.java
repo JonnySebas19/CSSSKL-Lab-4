@@ -18,8 +18,12 @@ public class DebugMe {
 
     public static void printSums(String[] args) {
 
+        if (args == null || args.length == 0){
+            return;
+        }
+
         int count;
-        count = Integer.parseInt(args);
+        count = Integer.parseInt(args[1]);
         int sum = 0;
 
         for (int i = 1; i <= count; i++) {

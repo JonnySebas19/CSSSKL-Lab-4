@@ -10,14 +10,14 @@ public class TestCompileTime {
 			System.err.println("Debug is turned on");
 			TestCompileTime t = new TestCompileTime();
 	        int[] numbers = new int[4];
-	        for (int i=1; i<5; i++)
+	        for (int i=0; i<4; i++)
 	        {
 	            numbers[i] = i;
 	            System.out.println("DEBUG_STATEMENT: number["+i+"]="+i);
 
 	        }
 
-	        for (int i=1; i<5; i++)
+	        for (int i=0; i<4; i++)
 	        {
 	            int element = numbers[i];
 	            System.out.print(element + " ");
