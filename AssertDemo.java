@@ -19,21 +19,16 @@ public class AssertDemo {
 	 */
 	public static void main(String[] args) {
 		assert(true);
-		assert(false);
+		//assert(false);
 		
-		warmUpAsserts();
+		//warmUpAsserts();
 		
-		assertWithPrimitives();
+		//assertWithPrimitives();
 		
-		assertWithObjects();
+		//assertWithObjects();
 		
 		homeworkRelatedAsserts();
 	}
-
-	/*
-	 * Just a few warm-up asserts here.
-	 * Add two new assert() statements after the TODO below
-	 */
 	private static void warmUpAsserts() {	
 			assert( 5 > 1 );
 			
@@ -42,7 +37,8 @@ public class AssertDemo {
 	
 			assert(null == null);	  //could this ever be false?
 			assert(true == true);	  //a bad day indeed if this could be false
-			//TODO: craft two more asserts and place them here.  If they're false, they'll crash the program.
+			assert("Hello".equals("Hello"));
+			assert(123 > 12);
 	}
 
 	/*
@@ -64,7 +60,8 @@ public class AssertDemo {
 		//assert that all ArrayLists start empty
 		ArrayList<String> emptyList = new ArrayList<String>();
 		assert(emptyList.size() == 0);
-		//TODO: build two more asserts that use primitives and relational operators here
+		assert(30.5 >= 30);
+		assert(true != false);
 	}
 	
 	/*
@@ -74,13 +71,27 @@ public class AssertDemo {
 	 */
 	private static void assertWithObjects() {
 		AssertDemo ad = new AssertDemo();
-		ad.checkAddress(ad);		
+		ad.checkAddress(ad);
 		//guess what .equals() does if you don't create one yourself? (hint ==)
-		assert( ad.equals(ad) );  
-		//TODO: make a few objects from any previous lab and test them with assert
-		//example: make two Point objects at the origin and assert they are equal
-		//assert(p1.equals(p2);  //example
+		assert( ad.equals(ad) );
+		//Created an .equals for Account to check contents.
+		Account
+				Act1 = new Account("Jonathan Sebastiani"),
+				Act2 = new Account("Emily Bautel");
+		Act1.deposit(100);
+		Act2.deposit(100);
+		assert(Act1.equals(Act2));
+
+		Account Act3 = Act2;
+		assert(Act3.equals(Act2));
+
+		Act3.deposit(100);
+		assert(Act3.equals(Act2));
 	}
+	/*
+	For immutable objects, if we are comparing the objects, we need to create an equals class.
+	If we are comparing the contents of the objects, we can use ==
+	 */
 
 
 	/*
@@ -94,6 +105,11 @@ public class AssertDemo {
 		//1? 2? 3? Which are they?
 		assert(this == input);  //== does an address check for objects, which is frequently NOT what we want
 	}
+	/*
+	8)
+	"this" points to the calling object, and "input" points to the argument object. They will end
+	up being the same because we are comparing the addresses of the same object.
+	 */
 
 	/*	
 	 * Asserts are a useful tool for transforming postconditions and class invariants into code.
@@ -105,6 +121,23 @@ public class AssertDemo {
 		assert( paidDate != null);  	 //perhaps one rule is that paidDate shouldn't be null after calling setPaidDate()
 		int cents = 0;
 		assert( cents >= 0 && cents <=99);  //another class invariant is written as an assert here.
-		//TODO: craft 2 more asserts that you could use with any assignment
+		double cost = 10;
+		assert( cost >= 10);
+		boolean isTrue = true;
+		assert(isTrue);
 	}
 }
+/*
+1) I think it depends which technique I would want to use. If I am looking at some sort of for-loop
+with a lot of confusing numbers, I would want to use the debugging option to walk through the whole
+thing. But, if I want to check something really quick, or keep it in my code so that I can test
+it a bunch of times, I would want to use asserts.
+2) I think that asserts would be better for longer programs because we can get a lot of information
+about where and what is happening to better navigate the code.
+3) For debugging, it makes it very easy to go slowly over code and see exactly what is going on.
+If it gets too difficulty, you can even write the variables down on paper so that you can track a lot better.
+You can inspect every variable at every line, rather than having to print a bunch and make your code
+super messy.
+4) Having proper documentation can help when finding and avoiding bugs because when a bug comes up, you
+can know exactly where it is and how it is failing.
+ */

@@ -3,7 +3,7 @@
  *
  * This Account class represents bank accounts that stores money for an owner.
  *
- * Author: (put your name here)
+ * Author: (Jonathan Sebastiani)
  */
 class Account
 {
@@ -33,7 +33,11 @@ class Account
 	 */
 	public void withdraw(int amount)
 	{
-		balance = balance - amount;
+		if (amount <= balance) {
+			balance = balance - amount;
+		} else {
+			System.out.println("You cannot withdraw more than your balance...");
+		}
 	}
 
 	/* Returns the balance of the Account
@@ -48,6 +52,9 @@ class Account
 	public String getOwner()
 	{
 		return owner;
+	}
+	public boolean equals(Account OtherAccount){
+		return this.balance == OtherAccount.balance;
 	}
 }
 
